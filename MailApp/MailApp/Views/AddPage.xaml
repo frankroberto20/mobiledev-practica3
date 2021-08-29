@@ -32,10 +32,13 @@
         <ToolbarItem Order="Secondary" Text="Settings" Priority="0"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid ColumnDefinitions="50, *" RowDefinitions="Auto, Auto, Auto, *">
+            <Label Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Margin="10,0,0,0" Text="From" />
+            <Entry Grid.Row="0" Grid.Column="1" FontSize="Body" Margin="0,0,10,0" />
+            <Label Grid.Row="1" Grid.Column="0" VerticalOptions="Center" Margin="10,0,0,0" Text="To" />
+            <Entry Grid.Row="1" Grid.Column="1" FontSize="Body" Margin="0,0,10,0" />
+            <Entry Grid.Row="2" Grid.ColumnSpan="2" FontSize="Body" Margin="10,0,10,0" Placeholder="Subject"/>
+            <Editor Grid.Row="3" Grid.ColumnSpan="2" FontSize="Body" Margin="10,0,10,0" Placeholder="Compose email"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

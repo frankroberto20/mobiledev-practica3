@@ -1,12 +1,107 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MailApp.Views.MailPage">
+<ContentPage
+    x:Class="MailApp.Views.MailPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="White">
+    <NavigationPage.TitleView>
+        <Grid ColumnDefinitions="*, Auto, Auto, Auto" ColumnSpacing="10">
+            <ImageButton
+                Grid.Column="1"
+                Margin="0,0,10,0"
+                BackgroundColor="Transparent"
+                HeightRequest="40"
+                HorizontalOptions="Center"
+                Source="ArchiveIcon.png"
+                VerticalOptions="Center" />
+            <ImageButton
+                Grid.Column="2"
+                Margin="0,0,10,0"
+                BackgroundColor="Transparent"
+                HeightRequest="40"
+                HorizontalOptions="Center"
+                Source="TrashIcon.png"
+                VerticalOptions="Center" />
+            <ImageButton
+                Grid.Column="3"
+                Margin="0,0,10,0"
+                BackgroundColor="Transparent"
+                HeightRequest="40"
+                HorizontalOptions="Center"
+                Source="MailIcon.png"
+                VerticalOptions="Center" />
+        </Grid>
+    </NavigationPage.TitleView>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Order="Secondary"
+            Priority="0"
+            Text="Settings" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Frame Padding="20">
+                <Label
+                    FontSize="36"
+                    Text="Test"
+                    TextColor="Black" />
+            </Frame>
+            <Grid
+                Padding="10"
+                ColumnDefinitions="70,*,Auto, Auto"
+                ColumnSpacing="10"
+                RowDefinitions="30, 20, 20">
+                <Frame
+                    Grid.RowSpan="3"
+                    Grid.Column="0"
+                    Margin="0,10,0,10"
+                    Padding="0"
+                    CornerRadius="35"
+                    HeightRequest="60"
+                    HorizontalOptions="CenterAndExpand"
+                    WidthRequest="60">
+                    <Image Aspect="AspectFill" Source="{Binding IconSource}" />
+                </Frame>
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Text="{Binding From}" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Text="{Binding To}" />
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Text="{Binding Date.DayOfWeek}" />
+                <ImageButton
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Grid.Column="2"
+                    Margin="0,0,10,0"
+                    BackgroundColor="Transparent"
+                    HeightRequest="40"
+                    HorizontalOptions="Center"
+                    Source="ReplyIcon.png"
+                    VerticalOptions="StartAndExpand" />
+                <ImageButton
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Grid.Column="3"
+                    Margin="0,0,10,0"
+                    BackgroundColor="Transparent"
+                    HeightRequest="40"
+                    HorizontalOptions="Center"
+                    Source="DotIcon.png"
+                    VerticalOptions="StartAndExpand" />
+            </Grid>
+            <Label
+                Margin="20"
+                FontSize="Medium"
+                Text="{Binding Body}"
+                TextColor="Black" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

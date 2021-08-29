@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MailApp.Models
 {
-    class Mail
+    public class Mail
     {
         public Mail(string subject, string body, string to, string from, string iconSource)
         {

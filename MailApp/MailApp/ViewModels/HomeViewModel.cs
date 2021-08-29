@@ -30,6 +30,7 @@ namespace MailApp.ViewModels
         public bool IsRefreshing { get; set; }
         public ICommand RefreshCommand { get; }
         public ICommand ComposeCommand { get; }
+        public ICommand DeleteCommand { get; }
         private ICommand SelectedMailCommand { get; }
         public ObservableCollection<Mail> Mails { get; } = new ObservableCollection<Mail>()
         {
@@ -42,23 +43,30 @@ namespace MailApp.ViewModels
             IsRefreshing = true;
             Mails.Clear();
             Mails.Add(new Mail("Test1", "Test mail", "frankroberto2000@hotmail.com", "example@mail.com", "UserImage.jpg"));
+            Mails.Add(new Mail("Test2", "Test mail", "frankroberto2000@hotmail.com", "example@mail.com", "UserImage.jpg"));
             IsRefreshing = false;
         }
 
         async void OnCompose()
         {
-            await App.Current.MainPage.Navigation.PushAsync(new AddPage());
+            await App.Current.MainPage.Navigation.PushAsync(new AddPage(Mails));
+        }
+
+        void OnDelete(Mail mail)
+        {
+            Mails.Remove(mail);
         }
 
         async void OnMailSelected(Mail mail)
         {
-            await App.Current.MainPage.DisplayAlert(mail.Subject, mail.Body, "OK");
+            await App.Current.MainPage.Navigation.PushAsync(new MailPage(mail));
         }
         
         public HomeViewModel()
         {
             RefreshCommand = new Command(OnRefresh);
             ComposeCommand = new Command(OnCompose);
+            DeleteCommand = new Command<Mail>(OnDelete);
             SelectedMailCommand = new Command<Mail>(OnMailSelected);
         }
     }

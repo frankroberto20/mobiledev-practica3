@@ -13,7 +13,7 @@ namespace MailApp
 
             MainPage = new NavigationPage(new HomePage())
             {
-                BarBackgroundColor=Color.FromHex("#eb4034")
+                BarBackgroundColor = Color.FromHex("#eb4034")
             };
         }
 

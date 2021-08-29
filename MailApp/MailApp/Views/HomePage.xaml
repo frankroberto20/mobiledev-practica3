@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:MailApp.ViewModels"
+    x:Name="homePage"
     Title="Primary">
     <NavigationPage.TitleView>
         <Grid ColumnDefinitions="Auto, *, Auto" ColumnSpacing="10">
@@ -44,7 +45,11 @@
                             <SwipeView>
                                 <SwipeView.RightItems>
                                     <SwipeItems>
-                                        <SwipeItem BackgroundColor="#d64e2f" IconImageSource="TrashIcon.png" />
+                                        <SwipeItem
+                                            BackgroundColor="#d64e2f"
+                                            Command="{Binding Source={x:Reference homePage}, Path=BindingContext.DeleteCommand}"
+                                            CommandParameter="{Binding}"
+                                            IconImageSource="TrashIcon.png" />
                                     </SwipeItems>
                                 </SwipeView.RightItems>
                                 <Grid

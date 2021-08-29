@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MailApp.Views.AddPage"
-             Title="Compose">
+<ContentPage
+    x:Class="MailApp.Views.AddPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:MailApp.ViewModels"
+    Title="Compose">
     <NavigationPage.TitleView>
         <Grid ColumnDefinitions="*, Auto, Auto" ColumnSpacing="10">
             <Label
@@ -18,10 +20,11 @@
                 HorizontalOptions="Center"
                 Source="AttachIcon.png"
                 VerticalOptions="Center" />
-            <ImageButton 
+            <ImageButton
                 Grid.Column="2"
                 Margin="0,0,10,0"
                 BackgroundColor="Transparent"
+                Command="{Binding SendCommand}"
                 HeightRequest="40"
                 HorizontalOptions="Center"
                 Source="SendIcon.png"
@@ -29,16 +32,53 @@
         </Grid>
     </NavigationPage.TitleView>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Order="Secondary" Text="Settings" Priority="0"/>
+        <ToolbarItem
+            Order="Secondary"
+            Priority="0"
+            Text="Settings" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Grid ColumnDefinitions="50, *" RowDefinitions="Auto, Auto, Auto, *">
-            <Label Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Margin="10,0,0,0" Text="From" />
-            <Entry Grid.Row="0" Grid.Column="1" FontSize="Body" Margin="0,0,10,0" />
-            <Label Grid.Row="1" Grid.Column="0" VerticalOptions="Center" Margin="10,0,0,0" Text="To" />
-            <Entry Grid.Row="1" Grid.Column="1" FontSize="Body" Margin="0,0,10,0" />
-            <Entry Grid.Row="2" Grid.ColumnSpan="2" FontSize="Body" Margin="10,0,10,0" Placeholder="Subject"/>
-            <Editor Grid.Row="3" Grid.ColumnSpan="2" FontSize="Body" Margin="10,0,10,0" Placeholder="Compose email"/>
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="10,0,0,0"
+                FontSize="Body"
+                Text="From"
+                VerticalOptions="Center" />
+            <Entry
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="0,0,10,0"
+                FontSize="Body"
+                Text="{Binding From}" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="10,0,0,0"
+                FontSize="Body"
+                Text="To"
+                VerticalOptions="Center" />
+            <Entry
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="0,0,10,0"
+                FontSize="Body"
+                Text="{Binding To}" />
+            <Entry
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                Margin="10,0,10,0"
+                FontSize="Body"
+                Placeholder="Subject"
+                Text="{Binding Subject}" />
+            <Editor
+                Grid.Row="3"
+                Grid.ColumnSpan="2"
+                Margin="10,0,10,0"
+                FontSize="Body"
+                Placeholder="Compose email"
+                Text="{Binding Body}" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

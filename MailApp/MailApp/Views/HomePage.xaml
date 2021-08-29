@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MailApp.Views.HomePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:MailApp.ViewModels"
+    Title="Primary">
+    <NavigationPage.TitleView>
+        <Grid ColumnDefinitions="Auto, *, Auto" ColumnSpacing="10">
+            <ImageButton
+                Grid.Column="0"
+                BackgroundColor="Transparent"
+                HeightRequest="40"
+                HorizontalOptions="Center"
+                Source="MenuIcon.png"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Column="1"
+                FontSize="Large"
+                Text="Primary"
+                TextColor="White" />
+            <ImageButton
+                Grid.Column="2"
+                Margin="0,0,10,0"
+                BackgroundColor="Transparent"
+                HeightRequest="40"
+                HorizontalOptions="Center"
+                Source="SearchIcon.png"
+                VerticalOptions="Center" />
+        </Grid>
+    </NavigationPage.TitleView>
+    <ContentPage.BindingContext>
+        <viewModels:HomeViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}">
+                <CollectionView
+                    ItemsSource="{Binding Mails}"
+                    SelectedItem="{Binding SelectedMail}"
+                    SelectionMode="Single">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem BackgroundColor="#d64e2f" IconImageSource="TrashIcon.png" />
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <Grid
+                                    Padding="10"
+                                    BackgroundColor="White"
+                                    ColumnDefinitions="70,*,Auto"
+                                    ColumnSpacing="10"
+                                    RowDefinitions="30, 20, 20">
+                                    <Frame
+                                        Grid.RowSpan="3"
+                                        Grid.Column="0"
+                                        Margin="0,10,0,10"
+                                        Padding="0"
+                                        CornerRadius="35"
+                                        HeightRequest="60"
+                                        HorizontalOptions="CenterAndExpand"
+                                        WidthRequest="60">
+                                        <Image Aspect="AspectFill" Source="{Binding IconSource}" />
+                                    </Frame>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        HorizontalOptions="EndAndExpand"
+                                        Text="{Binding Date.DayOfWeek}" />
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        FontAttributes="Bold"
+                                        FontSize="Medium"
+                                        Text="{Binding From}" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Text="{Binding Subject}" />
+                                    <Label
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        Text="{Binding Body}" />
+                                </Grid>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+            <ImageButton
+                AbsoluteLayout.LayoutBounds=".95,.95,80,80"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                BackgroundColor="Transparent"
+                Command="{Binding ComposeCommand}"
+                Source="ComposeIcon.png" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

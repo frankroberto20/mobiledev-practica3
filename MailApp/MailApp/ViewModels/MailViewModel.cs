@@ -15,6 +15,16 @@ namespace MailApp.ViewModels
             Body = mail.Body;
             Date = mail.Date;
             IconSource = mail.IconSource;
+            Images = mail.Images;
+
+            if (Images.Count == 0)
+            {
+                IsCollectionEmpty = false;
+            }
+            else
+            {
+                IsCollectionEmpty = true;
+            }
         }
     }
 }

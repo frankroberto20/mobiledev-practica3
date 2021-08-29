@@ -97,6 +97,28 @@
                     Source="DotIcon.png"
                     VerticalOptions="StartAndExpand" />
             </Grid>
+            <Frame Padding="10" IsVisible="{Binding IsCollectionEmpty}">
+                <StackLayout>
+                    <Label
+                        Margin="0,0,0,5"
+                        FontSize="Body"
+                        Text="Attachments" />
+                    <CollectionView
+                        HeightRequest="100"
+                        ItemsSource="{Binding Images, Mode=OneWay}"
+                        SelectedItem="{Binding SelectedImage}"
+                        SelectionMode="Single">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Image Margin="10" Source="{Binding .}" />
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </Frame>
             <Label
                 Margin="20"
                 FontSize="Medium"

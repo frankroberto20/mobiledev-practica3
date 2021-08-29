@@ -34,16 +34,16 @@ namespace MailApp.ViewModels
         private ICommand SelectedMailCommand { get; }
         public ObservableCollection<Mail> Mails { get; } = new ObservableCollection<Mail>()
         {
-            new Mail("Test1", "Test mail", "frankroberto2000@hotmail.com", "example@mail.com", "UserImage.jpg"),
-            new Mail("Test2", "Test mail", "frankroberto2000@hotmail.com", "example@mail.com", "UserImage.jpg")
+            new Mail("Test1", "Test mail", "frankroberto2000@hotmail.com", "example@mail.com", "UserImage.jpg", new ObservableCollection<string>()),
+            new Mail("Test2", "Test mail", "frankroberto2000@hotmail.com", "example@mail.com", "UserImage.jpg", new ObservableCollection<string>())
         };
 
         void OnRefresh()
         {
             IsRefreshing = true;
             Mails.Clear();
-            Mails.Add(new Mail("Test1", "Test mail", "frankroberto2000@hotmail.com", "example@mail.com", "UserImage.jpg"));
-            Mails.Add(new Mail("Test2", "Test mail", "frankroberto2000@hotmail.com", "example@mail.com", "UserImage.jpg"));
+            Mails.Add(new Mail("Test1", "Test mail", "frankroberto2000@hotmail.com", "example@mail.com", "UserImage.jpg", new ObservableCollection<string>()));
+            Mails.Add(new Mail("Test2", "Test mail", "frankroberto2000@hotmail.com", "example@mail.com", "UserImage.jpg", new ObservableCollection<string>()));
             IsRefreshing = false;
         }
 

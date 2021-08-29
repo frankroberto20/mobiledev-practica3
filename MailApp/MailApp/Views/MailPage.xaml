@@ -43,7 +43,7 @@
             <Frame Padding="20">
                 <Label
                     FontSize="36"
-                    Text="Test"
+                    Text="{Binding Subject}"
                     TextColor="Black" />
             </Frame>
             <Grid

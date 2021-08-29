@@ -5,10 +5,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Text;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Plugin.LocalNotifications;
 
 namespace MailApp.ViewModels
 {
@@ -18,7 +20,26 @@ namespace MailApp.ViewModels
         {
             SendCommand = new Command(async () => {
                 mails.Add(new Mail(Subject, Body, To, From, "UserIcon.png", Images));
+                Preferences.Set("Mails", JsonConvert.SerializeObject(mails)); 
                 await App.Current.MainPage.Navigation.PopAsync();
+                try
+                {
+                    EmailMessage message = new EmailMessage
+                    {
+                        Subject = Subject,
+                        Body = Body
+                    };
+                    foreach (string image in Images)
+                    {
+                        message.Attachments.Add(new EmailAttachment(image));
+                    }
+                    await Email.ComposeAsync(message);
+                    CrossLocalNotifications.Current.Show("Mail notification", "Mail sent successfully", 0, DateTime.Now.AddSeconds(5));
+                }
+                catch
+                {
+                    Console.WriteLine("Error sending mail.");
+                }
             });
             PickImageCommand = new Command(OnPickImage);
         }

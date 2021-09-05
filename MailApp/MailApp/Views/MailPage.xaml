@@ -50,7 +50,7 @@
                 Padding="10"
                 ColumnDefinitions="70,*,Auto, Auto"
                 ColumnSpacing="10"
-                RowDefinitions="30, 20, 20">
+                RowDefinitions="30, 20, 20, Auto, Auto">
                 <Frame
                     Grid.RowSpan="3"
                     Grid.Column="0"
@@ -96,34 +96,42 @@
                     HorizontalOptions="Center"
                     Source="DotIcon.png"
                     VerticalOptions="StartAndExpand" />
+                <Frame
+                    Grid.Row="3"
+                    Grid.ColumnSpan="4"
+                    Margin="0"
+                    Padding="10"
+                    IsVisible="{Binding IsCollectionEmpty}">
+                    <StackLayout>
+                        <Label
+                            Margin="0,0,0,5"
+                            FontSize="Body"
+                            Text="Attachments" />
+                        <CollectionView
+                            HeightRequest="100"
+                            ItemsSource="{Binding Images, Mode=OneWay}"
+                            SelectedItem="{Binding SelectedImage}"
+                            SelectionMode="Single">
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Horizontal" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Image Margin="10" Source="{Binding .}" />
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </Frame>
+                <Label
+                    Grid.Row="4"
+                    Grid.ColumnSpan="4"
+                    Margin="20"
+                    FontSize="Medium"
+                    Text="{Binding Body}"
+                    TextColor="Black" />
             </Grid>
-            <Frame Padding="10" IsVisible="{Binding IsCollectionEmpty}">
-                <StackLayout>
-                    <Label
-                        Margin="0,0,0,5"
-                        FontSize="Body"
-                        Text="Attachments" />
-                    <CollectionView
-                        HeightRequest="100"
-                        ItemsSource="{Binding Images, Mode=OneWay}"
-                        SelectedItem="{Binding SelectedImage}"
-                        SelectionMode="Single">
-                        <CollectionView.ItemsLayout>
-                            <LinearItemsLayout Orientation="Horizontal" />
-                        </CollectionView.ItemsLayout>
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <Image Margin="10" Source="{Binding .}" />
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </StackLayout>
-            </Frame>
-            <Label
-                Margin="20"
-                FontSize="Medium"
-                Text="{Binding Body}"
-                TextColor="Black" />
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -43,8 +43,13 @@ namespace MailApp.ViewModels
             });
             PickImageCommand = new Command(OnPickImage);
         }
+        public string To { get; set; }
+        public string From { get; set; }
+        public string Subject { get; set; }
+        public string Body { get; set; }
+        public ObservableCollection<string> Images { get; set; } = new ObservableCollection<string>();
+        public bool IsCollectionEmpty { get; set; } = false;
         public string PhotoPath { get; set; }
-        
         public ICommand SendCommand { get; }
         public ICommand PickImageCommand { get; }
 

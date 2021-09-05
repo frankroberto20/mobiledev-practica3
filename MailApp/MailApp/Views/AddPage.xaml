@@ -40,43 +40,45 @@
             Text="Settings" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout>
-            <Grid ColumnDefinitions="50, *" RowDefinitions="Auto, Auto, Auto">
-                <Label
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Margin="10,0,0,0"
-                    FontSize="Body"
-                    Text="From"
-                    VerticalOptions="Center" />
-                <Entry
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Margin="0,0,10,0"
-                    FontSize="Body"
-                    Text="{Binding From}" />
-                <Label
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Margin="10,0,0,0"
-                    FontSize="Body"
-                    Text="To"
-                    VerticalOptions="Center" />
-                <Entry
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Margin="0,0,10,0"
-                    FontSize="Body"
-                    Text="{Binding To}" />
-                <Entry
-                    Grid.Row="2"
-                    Grid.ColumnSpan="2"
-                    Margin="10,0,10,0"
-                    FontSize="Body"
-                    Placeholder="Subject"
-                    Text="{Binding Subject}" />
-            </Grid>
-            <Frame Padding="10" IsVisible="{Binding IsCollectionEmpty}">
+        <Grid ColumnDefinitions="50, *" RowDefinitions="Auto, Auto, Auto. Auto, *">
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="10,0,0,0"
+                FontSize="Body"
+                Text="From"
+                VerticalOptions="Center" />
+            <Entry
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="0,0,10,0"
+                FontSize="Body"
+                Text="{Binding From}" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="10,0,0,0"
+                FontSize="Body"
+                Text="To"
+                VerticalOptions="Center" />
+            <Entry
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="0,0,10,0"
+                FontSize="Body"
+                Text="{Binding To}" />
+            <Entry
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                Margin="10,0,10,0"
+                FontSize="Body"
+                Placeholder="Subject"
+                Text="{Binding Subject}" />
+            <Frame
+                Grid.Row="3"
+                Grid.ColumnSpan="2"
+                Padding="10"
+                IsVisible="{Binding IsCollectionEmpty}">
                 <StackLayout>
                     <Label
                         Margin="0,0,0,5"
@@ -99,14 +101,13 @@
                 </StackLayout>
             </Frame>
             <Editor
-                Grid.Row="3"
+                Grid.Row="4"
                 Grid.ColumnSpan="2"
                 Margin="10,0,10,0"
                 FontSize="Body"
                 Placeholder="Compose email"
                 Text="{Binding Body}"
                 VerticalOptions="FillAndExpand" />
-
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

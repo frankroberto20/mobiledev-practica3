@@ -24,15 +24,5 @@ namespace MailApp.Models
         public string From { get; set; }
         public string IconSource { get; set; }
         public ObservableCollection<string> Images { get; set; }
-
-        public string ToFile()
-        {
-            string imageString = "";
-            foreach (string image in Images)
-            {
-                imageString += image;
-            }
-            return $"{Subject},{Body},{To},{From},{Date},{IconSource},{imageString}";
-        }
     }
 }
